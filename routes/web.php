@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('about', [PageController::class, 'about']);
+/*
 Route::get('about', function () {
     $tags = ['обучение', 'программирование', 'php', 'oop'];
     $team = [
@@ -27,10 +30,8 @@ Route::get('about', function () {
         ['name' => 'Tom', 'position' => 'lawyer']
     ];
     return view('about', ['team' => $team]);
-    //return view('about', ['tags' => $tags]);
-    //return view('about');
 });
-
+*/
 Route::get('articles', function () {
     return view('articles');
 });
