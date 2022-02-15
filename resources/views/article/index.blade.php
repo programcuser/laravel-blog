@@ -9,6 +9,9 @@
 @endsection
 
 @section('content')
+    @if (isset($flash))
+        <div>{{ $flash }}</div>
+    @endif
     <h1>Список статей</h1>
     @foreach ($articles as $article)
         <h2>

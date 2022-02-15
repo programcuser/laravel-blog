@@ -27,12 +27,14 @@ class ArticleController extends Controller
         }
 
         $articles = $query->paginate();
+
+        $flash = $request->session()->get('status'); //get Flash Message
         
         //$articles->links();  //вывод постраничной навигации
 
         // Статьи передаются в шаблон
         // compact('articles') => [ 'articles' => $articles ]
-        return view('article.index', compact('articles', 'querySearch'));
+        return view('article.index', compact('articles', 'querySearch', 'flash'));
     }
 
     public function show($id)
@@ -64,6 +66,8 @@ class ArticleController extends Controller
         $article->fill($data);
         // При ошибках сохранения возникнет исключение
         $article->save();
+
+        $request->session()->flash('status', 'The article was created successful!');
 
         // Редирект на указанный маршрут
         return redirect()
