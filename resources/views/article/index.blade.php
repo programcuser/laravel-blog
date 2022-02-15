@@ -1,7 +1,14 @@
 @extends('layouts.app')
 
+@section('search')
+{{Form::open(['url' => route('articles.index'), 'method' => 'GET'])}}
+    {{Form::text('q', $querySearch)}}
+    {{Form::submit('найти')}}
+{{Form::close()}}
+@endsection
+
 @section('content')
-    <h1><Список статей></h1>
+    <h1>Список статей</h1>
     @foreach ($articles as $article)
         <h2>
             <a href="{{ route('articles.show', ['id' => $article->id]) }}">

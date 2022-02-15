@@ -8,14 +8,21 @@ use App\Models\Article;
 class ArticleController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
-        $articles = Article::paginate();
-        $articles->links();  //вывод постраничной навигации
+        $querySearch = $request->input('q', '');
+        $articles;
+        if ($querySearch === '') {
+            $articles = Article::paginate();
+        } else {
+            $articles = Article::where('name', 'like', "%{$querySearch}%")->paginate();
+        }
+        
+        //$articles->links();  //вывод постраничной навигации
 
         // Статьи передаются в шаблон
         // compact('articles') => [ 'articles' => $articles ]
-        return view('article.index', compact('articles'));
+        return view('article.index', compact('articles', 'querySearch'));
     }
 
     public function show($id)
