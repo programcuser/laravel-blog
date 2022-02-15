@@ -43,6 +43,14 @@ Route::get('articles', function () {
 Route::get('articles', [ArticleController::class, 'index'])
     ->name('articles.index');
 
+
+Route::get('articles/create', 'App\Http\Controllers\ArticleController@create')
+    ->name('articles.create');
+
+// POST-запрос
+Route::post('articles', 'App\Http\Controllers\ArticleController@store')
+    ->name('articles.store');
+
 # id – параметр, который зависит от конкретной статьи
 # Фигурные скобки нужны для описания параметров маршрута
 Route::get('articles/{id}', [ArticleController::class, 'show'])
