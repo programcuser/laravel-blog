@@ -11,6 +11,7 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::paginate();
+        $articles->links();  //вывод постраничной навигации
 
         // Статьи передаются в шаблон
         // compact('articles') => [ 'articles' => $articles ]

@@ -8,4 +8,5 @@
         {{-- Используется для очень длинных текстов, которые нужно сократить --}}
         <div>{{Str::limit($article->body, 200)}}</div>
     @endforeach
+    <div>{{ $articles->links() }}</div>
 @endsection
