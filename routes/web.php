@@ -42,3 +42,8 @@ Route::get('articles', function () {
 
 Route::get('articles', [ArticleController::class, 'index'])
     ->name('articles.index');
+
+# id – параметр, который зависит от конкретной статьи
+# Фигурные скобки нужны для описания параметров маршрута
+Route::get('articles/{id}', [ArticleController::class, 'show'])
+  ->name('articles.show');
