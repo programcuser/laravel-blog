@@ -10,13 +10,23 @@ class ArticleController extends Controller
     //
     public function index(Request $request)
     {
+        /*
         $querySearch = $request->input('q', '');
         $articles;
         if ($querySearch === '') {
             $articles = Article::paginate();
         } else {
             $articles = Article::where('name', 'like', "%{$querySearch}%")->paginate();
+        }*/
+        
+        $querySearch = $request->input('q');
+        $query = Article::query();
+
+        if ($querySearch) {
+            $query->where('name', 'like', "%{$querySearch}%");
         }
+
+        $articles = $query->paginate();
         
         //$articles->links();  //вывод постраничной навигации
 

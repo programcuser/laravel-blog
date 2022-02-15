@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('search')
+{{-- or ['route' => 'articles.index'] --}}
 {{Form::open(['url' => route('articles.index'), 'method' => 'GET'])}}
     {{Form::text('q', $querySearch)}}
     {{Form::submit('найти')}}
