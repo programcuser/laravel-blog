@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,12 @@ Route::get('about', function () {
     return view('about', ['team' => $team]);
 });
 */
+
+/*
 Route::get('articles', function () {
     return view('articles');
 });
+*/
+
+Route::get('articles', [ArticleController::class, 'index'])
+    ->name('articles.index');

@@ -22,7 +22,7 @@
     </head>
     <body class="antialiased">
         <div>
-            <a href="/articles">Articles</a>
+            <a href="{{ route('articles.index') }}">Articles</a>
         </div>
         <div>
             <a href="/about">About</a>
