@@ -41,5 +41,6 @@ class StoreArticleRequest extends FormRequest
         //];
 
         //https://www.csrhymes.com/2019/06/22/using-the-unique-validation-rule-in-laravel-form-request.html
+        //https://laracasts.com/discuss/channels/requests/laravel-5-validation-request-how-to-handle-validation-on-update
     }
 }
