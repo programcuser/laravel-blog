@@ -39,5 +39,7 @@ class StoreArticleRequest extends FormRequest
         //        Rule::unique('posts', 'title')->ignore($this->post)
         //    ]
         //];
+
+        //https://www.csrhymes.com/2019/06/22/using-the-unique-validation-rule-in-laravel-form-request.html
     }
 }
