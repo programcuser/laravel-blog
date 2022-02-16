@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Article;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreArticleRequest;
 
 class ArticleController extends Controller
 {
-    //
+    /**
+     * Display a listing of the resource.
+     *
+     * @param  \Illuminate\Http\Request
+     * @return \Illuminate\Http\Response
+     */
     public function index(Request $request)
     {
         /*
@@ -38,12 +43,11 @@ class ArticleController extends Controller
         return view('article.index', compact('articles', 'querySearch', 'flash'));
     }
 
-    public function show($id)
-    {
-        $article = Article::findOrFail($id);
-        return view('article.show', compact('article'));
-    }
-
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         // Передаём в шаблон вновь созданный объект. Он нужен для вывода формы через Form::model
@@ -51,7 +55,12 @@ class ArticleController extends Controller
         return view('article.create', compact('article'));
     }
 
-    // Здесь нам понадобится объект запроса для извлечения данных
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\StoreArticleRequest  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(StoreArticleRequest $request)
     {
         // Проверка введённых данных
@@ -76,15 +85,40 @@ class ArticleController extends Controller
             ->route('articles.index');
     }
 
-    public function edit($id)
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Article  $article
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Article $article)
     {
-        $article = Article::findOrFail($id);
+        //$article = Article::findOrFail($id);
+        return view('article.show', compact('article'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Article  $article
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Article $article)
+    {
+        //$article = Article::findOrFail($id);
         return view('article.edit', compact('article'));
     }
 
-    public function update(StoreArticleRequest $request, $id)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\StoreArticleRequest  $request
+     * @param  \App\Models\Article  $article
+     * @return \Illuminate\Http\Response
+     */
+    public function update(StoreArticleRequest $request, Article $article)
     {
-        $article = Article::findOrFail($id);
+        //$article = Article::findOrFail($id);
         //$data = $this->validate($request, [
             // У обновления немного изменённая валидация. В проверку уникальности добавляется название поля и id текущего объекта
             // Если этого не сделать, Laravel будет ругаться на то что имя уже существует
@@ -103,16 +137,22 @@ class ArticleController extends Controller
             ->route('articles.index');
     }
 
-    public function destroy($id)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Article  $article
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Article $article)
     {
         // DELETE — идемпотентный метод, поэтому результат операции всегда один и тот же
-        $article = Article::find($id);
+        //$article = Article::find($id);
         if ($article) {
             $article->delete();
         }
-
+        
         session()->flash('status', 'The article was deleted successful!');
-
+        
         return redirect()->route('articles.index');
     }
 }

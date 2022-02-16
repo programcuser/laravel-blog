@@ -15,7 +15,7 @@
     <h1>Список статей</h1>
     @foreach ($articles as $article)
         <h2>
-            <a href="{{ route('articles.show', ['id' => $article->id]) }}">
+            <a href="{{ route('articles.show', $article) }}">
                 {{$article->name}}
             <a>
         </h2>
@@ -25,7 +25,7 @@
         <a href="{{ route('articles.edit', $article) }}">
             Edit
         <a>
-        <a href="{{ route('articles.destroy', ['id' => $article->id]) }}" data-confirm="Вы уверены?" data-method="delete" rel="nofollow">Удалить</a>
+        <a href="{{ route('articles.destroy', $article->id) }}" data-confirm="Вы уверены?" data-method="delete" rel="nofollow">Удалить</a>
     @endforeach
     <div>{{ $articles->links() }}</div>
 @endsection

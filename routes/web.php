@@ -34,36 +34,4 @@ Route::get('about', function () {
 });
 */
 
-/*
-Route::get('articles', function () {
-    return view('articles');
-});
-*/
-
-Route::get('articles', [ArticleController::class, 'index'])
-    ->name('articles.index');
-
-
-Route::get('articles/create', 'App\Http\Controllers\ArticleController@create')
-    ->name('articles.create');
-
-// POST-запрос
-Route::post('articles', 'App\Http\Controllers\ArticleController@store')
-    ->name('articles.store');
-
-# id – параметр, который зависит от конкретной статьи
-# Фигурные скобки нужны для описания параметров маршрута
-Route::get('articles/{id}', [ArticleController::class, 'show'])
-  ->name('articles.show');
-
-
-Route::get('articles/{id}/edit', [ArticleController::class, 'edit'])
-  ->name('articles.edit');
-
-// Метод PATCH
-Route::patch('articles/{id}', [ArticleController::class, 'update'])
-  ->name('articles.update');
-
-
-Route::delete('articles/{id}', [ArticleController::class, 'destroy'])
-  ->name('articles.destroy');
+Route::resource('articles', ArticleController::class);
