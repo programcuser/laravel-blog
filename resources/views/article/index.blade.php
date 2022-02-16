@@ -25,6 +25,7 @@
         <a href="{{ route('articles.edit', $article) }}">
             Edit
         <a>
+        <a href="{{ route('articles.destroy', ['id' => $article->id]) }}" data-confirm="Вы уверены?" data-method="delete" rel="nofollow">Удалить</a>
     @endforeach
     <div>{{ $articles->links() }}</div>
 @endsection
